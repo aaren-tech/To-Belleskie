@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 💌</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    background: url("photo.jpg") no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+.envelope-container {
+    text-align: center;
+    margin-top: 150px;
+    cursor: pointer;
+    color: white;
+}
+
+.envelope {
+    position: relative;
+    width: 200px;
+    height: 120px;
+    margin: auto;
+}
+
+.body {
+    width: 100%;
+    height: 100%;
+    background: #ffccd5;
+    border-radius: 5px;
+    position: absolute;
+}
+
+.flap {
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 60px solid #ff8fab;
+    position: absolute;
+    top: 0;
+    transform-origin: top;
+    transition: transform 0.8s ease;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+.click-text {
+    background: white;
+    color: black;
+    padding: 8px 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.letter {
+    background: white;
+    width: 60%;
+    margin: 100px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    display: none;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease;
+}
+
+.letter.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.play-btn { background: lightblue; }
+.yes-btn { background: lightgreen; }
+
+.no-btn {
+    background: red;
+    color: white;
+    position: absolute;
+}
+
+.center {
+    text-align: center;
+}
+
+.heart {
+    position: fixed;
+    bottom: -10px;
+    color: red;
+    font-size: 20px;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-800px) scale(1.5);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="envelope-container" onclick="openEnvelope()">
+    <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="body"></div>
+    </div>
+
+    <p><span class="click-text">Click the envelope 💌</span></p>
+</div>
+
+<div class="letter" id="letter">
+    <h1>I'm Sorry Bellskie💔</h1>
+    <p>
+        Hi Menn Bellskie,<br><br>
+
+        Mennnnnnnn gurl, una sa lahat miss na kita 5555555 wag kang mag tampurorot dyan HAHAHAHAH. May nasagap akong<br> 
+        balita alam mo na kung kanino galing yun. Hindi ka namin kinakalimutan oh my...."my brain are always braining<br> 
+        every seconds and every hours naiisip kita gurl HAHAHAHAHAHAH pwera lang sa pag tae ko Lol". ps. pwede sya maging tula.<br>  
+        
+        <br>Back to reality, ang totoo nyarn busy lang me...sa school, sa bahay at lalo na sa sandamakmak na obligasyon isama mo pa yung thesis!<br> 
+        Kaya ito sana HAHAHHAHA sa effort kung ito eyyyyyyy. Maramdaman mo na Mahal na Mahal ka namin ng mga Mennskie mo kahit na malayo ka
+        "pasalubong ah chocolate". HAHAHAHAHAH Smile ka muna, bilangin mo na lang yung heart na nag flo float 55555555
+        basta wag mong pipindutin yung "No".<br>
+
+        <br>I love you and we miss you so soooo much!.💖 I hope you can forgive us...😢 "Haba talaga ng buhok ohhh" HAHAHAHAHAH.<br><br>
+
+        From,<br>
+        [A]
+    </p>
+
+    <div class="center">
+        <button class="btn play-btn" onclick="playAudio()">Play the audio 🎧</button>
+    </div>
+
+    <div class="center">
+        <p><b>Si A ay pinapatawad ko na?</b></p>
+        <button class="btn yes-btn" onclick="accepted()">Yes 💖</button>
+        <button class="btn no-btn" id="noBtn">No, Edi wag Lol.😢</button>
+    </div>
+</div>
+
+<audio id="audio">
+    <source src="audio.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function openEnvelope() {
+    const envelope = document.getElementById("envelope");
+    const letter = document.getElementById("letter");
+
+    envelope.classList.add("open");
+
+    setTimeout(() => {
+        document.querySelector(".envelope-container").style.display = "none";
+        letter.style.display = "block";
+
+        setTimeout(() => {
+            letter.classList.add("show");
+        }, 100);
+    }, 800);
+}
+
+function playAudio() {
+    document.getElementById("audio").play();
+}
+
+function accepted() {
+    alert("5555555 Wala kang choice syempre bleh!💖");
+}
+
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("click", moveButton);
+
+function moveButton() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+    noBtn.innerHTML = "Are you sure? 😭";
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
